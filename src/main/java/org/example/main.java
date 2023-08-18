@@ -94,7 +94,7 @@ public class main implements Runnable {
     }
 
     public static void processingBaseQuestionToJSon(){
-        String fileOutput = "D:\\OutPutFile.csv";
+        String fileOutput = "Data/OutPutFile.csv";
         List<String[]> o =  new ArrayList<String[]>();
         try (CSVReader reader = new CSVReader(new FileReader(fileOutput))) {
             o = reader.readAll();
