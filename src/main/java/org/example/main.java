@@ -41,27 +41,10 @@ public class main implements Runnable {
     private boolean bothOption;
 
     public static void main(String[] args)  {
-        Scanner myObj = new Scanner(System.in);
-        String option;
-        System.out.println("Enter option: 1:  -csv , 2. -json , 3. -both");
-        option = myObj.nextLine();
-            switch (option) {
-                case "-csv":
-                    System.out.println("Run option csv");
-                    new CommandLine(new main()).execute(option);
-                    break;
-                case "-json":
-                    System.out.println("Run option json");
-                    new CommandLine(new main()).execute(option);
-                    break;
-                case "-both":
-                    System.out.println("Run both options");
-                    new CommandLine(new main()).execute(option);
-                    break;
-                default:
-                    System.out.println("Invalid option");
-                    break;
-            }
+
+        System.out.println("Run option"+ Arrays.toString(args));
+        new CommandLine(new main()).execute(args);
+
     }
 
     @Override
