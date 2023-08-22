@@ -42,7 +42,7 @@ public class main implements Runnable {
 
     public static void main(String[] args)  {
 
-        System.out.println("Run option"+ Arrays.toString(args));
+        System.out.println("Run option "+ Arrays.toString(args));
         new CommandLine(new main()).execute(args);
 
     }
@@ -117,7 +117,6 @@ public class main implements Runnable {
         }
 
         String jsonText = new Gson().toJson(baseQuestionsList);
-        System.out.println(jsonText);
 
         try {
             FileWriter file = new FileWriter("Data/output.json");
