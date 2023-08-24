@@ -35,7 +35,6 @@ public class main implements Runnable {
 
     public static void main(String[] args)  {
         String argument= Arrays.toString(args);
-        System.out.println(argument);
         switch (argument) {
             case "[csv]":
                 System.out.println("Run success option 1 to get new CSV file");
