@@ -16,12 +16,6 @@ import java.util.*;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.concurrent.Callable;
-
-import static java.nio.file.Files.createFile;
-import static java.nio.file.Path.of;
 
 @Command(
         name= "exercise",
@@ -30,20 +24,74 @@ import static java.nio.file.Path.of;
 )
 
 public class main implements Runnable {
-    @Option(names = "-csv", description = "1. Create a new CSV file")
+    @Option(names = "csv", description = "1. Create a new CSV file")
     private boolean createCsvFile;
 
-
-    @Option(names = "-json", description = "2. Create a Json file")
+    @Option(names = "json", description = "2. Create a Json file")
     private boolean createJsonFile;
 
-    @Option(names = "-both", description = "Both options")
+    @Option(names = "both", description = "Both options")
     private boolean bothOption;
 
     public static void main(String[] args)  {
+        String argument= Arrays.toString(args);
+        System.out.println(argument);
+        switch (argument) {
+            case "[csv]":
+                System.out.println("Run success option 1 to get new CSV file");
+                new CommandLine(new main()).execute(args);
+                ask();
+                break;
+            case "[json]":
+                System.out.println("Run success option 2 to get new JSON file");
+                new CommandLine(new main()).execute(args);
+                ask();
+                break;
+            case "[both]":
+                System.out.println("Run success both options");
+                new CommandLine(new main()).execute(args);
+                ask();
+                break;
+            case "exit":
+                System.out.println("Exit");
+                break;
+            default:
+                System.out.println("Invalid option, please input again");
+                ask();
+                break;
+        }
 
-        System.out.println("Run option "+ Arrays.toString(args));
-        new CommandLine(new main()).execute(args);
+    }
+
+    public static void ask(){
+        Scanner myObj = new Scanner(System.in);
+        String option;
+        System.out.println("Enter next option: 1:  csv , 2. json , 3. both   4. exit" );
+        option = myObj.nextLine();
+
+        switch (option) {
+            case "csv":
+                System.out.println("Run option 1 to get new CSV file");
+                new CommandLine(new main()).execute(option);
+                ask();
+                break;
+            case "json":
+                System.out.println("Run option 2 to get new JSON file");
+                new CommandLine(new main()).execute(option);
+                ask();
+                break;
+            case "both":
+                System.out.println("Run both options");
+                new CommandLine(new main()).execute(option);
+                ask();
+                break;
+            case "exit":
+                break;
+            default:
+                System.out.println("Invalid option");
+                ask();
+                break;
+        }
 
     }
 
@@ -71,7 +119,6 @@ public class main implements Runnable {
                 e.printStackTrace();
             }
         }
-
     }
 
     public static void processingCSVFileToGetBaseQuestionAsANewFile() throws IOException,CsvException{
@@ -139,8 +186,6 @@ public class main implements Runnable {
         catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }
-
